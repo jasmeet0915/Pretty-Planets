@@ -1,0 +1,23 @@
+{
+    "image": "ADD_IMAGES_BASE_URI_HERE1018.png",
+    "tokenId": 1018,
+    "name": "ADD_PROJECT_NAME_HERE 1018",
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "1"
+        },
+        {
+            "trait_type": "Circle",
+            "value": "6"
+        },
+        {
+            "trait_type": "Square",
+            "value": "1"
+        },
+        {
+            "trait_type": "quare",
+            "value": "6"
+        }
+    ]
+}

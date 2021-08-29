@@ -1,0 +1,23 @@
+{
+    "image": "ADD_IMAGES_BASE_URI_HERE365.png",
+    "tokenId": 365,
+    "name": "ADD_PROJECT_NAME_HERE 365",
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "11"
+        },
+        {
+            "trait_type": "Circle",
+            "value": "6"
+        },
+        {
+            "trait_type": "Square",
+            "value": "1"
+        },
+        {
+            "trait_type": "quare",
+            "value": "4"
+        }
+    ]
+}
