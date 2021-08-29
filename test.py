@@ -1,6 +1,14 @@
 import cv2
-from random import randint
+from random import randint, random
 import numpy as np
+
+
+def in_circle(sx, sy, cx, cy):
+    dist = (sx - cx)**2 + (sy - cy)**2
+    if dist < 300**2:
+        return True
+    else:
+        return False
 
 def overlay_shadow(orig_img, gray_img):
      # load shadow image with alpha channel
@@ -41,15 +49,24 @@ def overlay_shadow(orig_img, gray_img):
     shadow = cv2.cvtColor(shadow, cv2.COLOR_BGR2BGRA)
     shadow[:, :, 3] = shadow_alpha
 
+    # overlay shadow on top of orig img
     final = cv2.add(shadow, orig_img)
     
-    print(shadow.shape)
-    cv2.imshow("Image", orig_img)
-    cv2.imshow("Final", final)
-    cv2.imwrite("Shadow.png", shadow)
-    cv2.waitKey(0)
+    return final
 
-   
+def create_background_starfield(no_star_img, density):
+    
+    for star in range(0, density):
+        # star properties [x, y, r]
+        star_props = [randint(0, 1000), randint(0, 1000), randint(1, 3)]
+
+        # check if star lies on planet then don't draw
+        if in_circle(star_props[0], star_props[1], 500, 500):
+            continue
+        else:
+            cv2.circle(no_star_img, (star_props[0], star_props[1]), star_props[2], (255, 255, 255), -1)
+
+    return no_star_img 
 
 
 def main():
@@ -59,12 +76,16 @@ def main():
     base_img = cv2.imread("assets/planets/{}.png".format(base_img_index))
     base_img_gray = cv2.cvtColor(base_img, cv2.COLOR_BGR2GRAY)
 
-    overlay_shadow(base_img, base_img_gray)
+    shadow_base_img = overlay_shadow(base_img, base_img_gray)
 
-    #cv2.imshow("base Image", base_img)
+    starred_base_img = create_background_starfield(shadow_base_img, 500)
 
-    
-    #cv2.waitKey(0)
+    cv2.imshow("Original Image", base_img)
+    cv2.imshow("Shadow Image", shadow_base_img)
+    cv2.imshow("Starred Image", starred_base_img)
+
+
+    cv2.waitKey(0)
     cv2.destroyAllWindows()
 
 
