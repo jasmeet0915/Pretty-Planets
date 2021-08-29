@@ -70,20 +70,17 @@ def create_background_starfield(no_star_img, density):
 
 
 def main():
-    base_img_index = randint(1, 12) 
+    for i in range(0, 1024):
+        base_img = cv2.imread("./images/{}.png".format(i))
 
-    # load a random planet img as base img & create its gray version
-    base_img = cv2.imread("assets/planets/{}.png".format(base_img_index))
-    base_img_gray = cv2.cvtColor(base_img, cv2.COLOR_BGR2GRAY)
+        base_img_gray = cv2.cvtColor(base_img, cv2.COLOR_BGR2GRAY)
 
-    shadow_base_img = overlay_shadow(base_img, base_img_gray)
+        shadow_img = overlay_shadow(base_img, base_img_gray)
 
-    starred_base_img = create_background_starfield(shadow_base_img, 500)
+        starred_img = create_background_starfield(shadow_img, density=500)
 
-    cv2.imshow("Original Image", base_img)
-    cv2.imshow("Shadow Image", shadow_base_img)
-    cv2.imshow("Starred Image", starred_base_img)
-
+        cv2.imwrite("{}.png".format(i), starred_img)
+        print("..............Written {}.png with Shadow & Starfield.............".format(i))
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
