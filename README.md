@@ -7,3 +7,8 @@
  a random starfield in the background with a certain density and randomly placed and sized stars.
  
 The `images` directory contains only some example images as we couldn't upload all the 1024 generated images.
+
+<img src="./images/100.png" width=300/> 
+<img src="./images/99.png" width=300/>
+<img src="./images/64.png" width=300/>
+
