@@ -1,4 +1,4 @@
-# nft-vision-hack
+# Pretty Planets
 
  * `generator.ipynb` script loads the background and other different trait features and layers them together uniquely and randomly to create a final planet image 
     with a plain background.
